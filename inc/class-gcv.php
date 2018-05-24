@@ -25,6 +25,7 @@ class GCV {
 	 * Get the Google Cloud Vision enrichment data for a given attachment.
 	 *
 	 * @param integer $attachment_id ID for the attachment.
+	 * @param array   $features      Which enrichment features to request.
 	 * @return mixed Data object if success, WP_Error if failure.
 	 */
 	public static function get_enrichment_data( $attachment_id, $features = array() ) {
@@ -60,7 +61,7 @@ class GCV {
 			}
 		}
 
-		$request  = array(
+		$request     = array(
 			'headers' => array(
 				'Content-Type' => 'application/json',
 			),
@@ -85,6 +86,7 @@ class GCV {
 		$response_body = wp_remote_retrieve_body( $response );
 		$response_body = json_decode( $response_body, true );
 		if ( 200 !== $response_code ) {
+			// translators: Message communicating the API failure.
 			return new WP_Error( 'pie-invalid-response', sprintf( __( 'Error with GCV request: %1$s (HTTP code %2$d)', 'pantheon-image-enrichment' ), $response_body['error']['message'], $response_code ) );
 		}
 		return $response_body;

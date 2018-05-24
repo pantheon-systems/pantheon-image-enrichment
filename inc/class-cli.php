@@ -24,14 +24,21 @@ class CLI {
 	 * [<attachment-id>...]
 	 * : One or more IDs of the attachments to regenerate.
 	 *
+	 * [--refresh]
+	 * : Also generate new alt text for attachments previously enriched.
+	 *
 	 * [--force]
-	 * : Always generate alt text, even if some already exists.
+	 * : Always generate alt text for attachments, even if some already exists.
 	 *
 	 * @subcommand generate-alt-text
 	 */
 	public function generate_alt_text( $args, $assoc_args ) {
 
-		$force = Utils\get_flag_value( $assoc_args, 'force' );
+		$refresh = Utils\get_flag_value( $assoc_args, 'refresh' );
+		$force   = Utils\get_flag_value( $assoc_args, 'force' );
+		if ( $refresh && $force ) {
+			WP_CLI::error_log( '--refresh and --force cannot be used at the same time.' );
+		}
 
 		$query_args = array(
 			'post_type'      => 'attachment',
@@ -51,7 +58,12 @@ class CLI {
 		$successes = 0;
 		$errors    = 0;
 		foreach ( $images->posts as $id ) {
-			$method = $force ? 'generate_alt_text_always' : 'generate_alt_text_if_none_exists';
+			$method = 'generate_alt_text_if_none_exists';
+			if ( $refresh ) {
+				$method = 'generate_alt_text_if_missing_or_previously_enriched';
+			} elseif ( $force ) {
+				$method = 'generate_alt_text_always';
+			}
 			if ( Enrich::$method( $id ) ) {
 				$successes++;
 			} else {
