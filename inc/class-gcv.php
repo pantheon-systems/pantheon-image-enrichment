@@ -64,6 +64,10 @@ class GCV {
 		$request_signature = hash(
 			'sha256', serialize(
 				array(
+					// Strip the digits off the filename.
+					// The test suite can increment filenames indefinitely;
+					// because we're simply creating a unique-ish hash, it's
+					// fine that this value is a little lossy.
 					preg_replace( '#[\d]+$#', '', pathinfo( $attached_file, PATHINFO_FILENAME ) ),
 					$request_body['features'],
 				)
