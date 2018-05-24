@@ -90,8 +90,8 @@ class GCV {
 			'timeout' => 20,
 		);
 		$request_url = self::ENRICHMENT_ENDPOINT;
-		if ( defined( 'GCV_API_KEY' ) && GCV_API_KEY ) {
-			$request_url = add_query_arg( 'key', GCV_API_KEY, $request_url );
+		if ( defined( 'PIE_GCV_API_KEY' ) && PIE_GCV_API_KEY ) {
+			$request_url = add_query_arg( 'key', PIE_GCV_API_KEY, $request_url );
 		}
 		$response = wp_remote_post( $request_url, $request );
 		if ( is_wp_error( $response ) ) {
