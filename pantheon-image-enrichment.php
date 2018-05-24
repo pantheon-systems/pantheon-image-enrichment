@@ -12,7 +12,14 @@
  * @package         Pantheon_Image_Enrichment
  */
 
-// Your code starts here.
+/**
+ * All of the integration points between the plugin and WordPress.
+ */
+add_action( 'updated_post_meta', array(
+	'Pantheon_Image_Enrichment\Hooks',
+	'action_updated_post_meta_remove_key',
+), 10, 3 );
+
 /**
  * Registers the class autoloader.
  */
