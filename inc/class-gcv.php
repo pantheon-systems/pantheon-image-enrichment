@@ -61,9 +61,20 @@ class GCV {
 			}
 		}
 
+		$request_signature = hash(
+			'sha256', serialize(
+				array(
+					preg_replace( '#[\d]+$#', '', pathinfo( $attached_file, PATHINFO_FILENAME ) ),
+					$request_body['features'],
+				)
+			)
+		);
+		$request_signature = substr( $request_signature, 0, 8 );
+
 		$request     = array(
 			'headers' => array(
-				'Content-Type' => 'application/json',
+				'Content-Type'            => 'application/json',
+				'X-PIE-Request-Signature' => $request_signature,
 			),
 			'body'    => json_encode(
 				array(
