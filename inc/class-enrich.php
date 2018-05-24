@@ -19,12 +19,22 @@ class Enrich {
 	 * @return bool
 	 */
 	public static function generate_alt_text_if_none_exists( $attachment_id ) {
-		$attachment = get_post( $attachment_id );
-		if ( ! $attachment_id || ! $attachment ) {
-			return false;
-		}
 		$alt_text = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 		if ( '' !== $alt_text ) {
+			return false;
+		}
+		return self::generate_alt_text_always( $attachment_id );
+	}
+
+	/**
+	 * Always generate alt text, even if some exists already.
+	 *
+	 * @param integer $attachment_id ID for the attachment.
+	 * @return bool
+	 */
+	public static function generate_alt_text_always( $attachment_id ) {
+		$attachment = get_post( $attachment_id );
+		if ( ! $attachment_id || ! $attachment ) {
 			return false;
 		}
 		$enrichment_data = GCV::get_enrichment_data( $attachment_id, array( 'LABEL_DETECTION' ) );

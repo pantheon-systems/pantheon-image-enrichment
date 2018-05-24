@@ -24,9 +24,14 @@ class CLI {
 	 * [<attachment-id>...]
 	 * : One or more IDs of the attachments to regenerate.
 	 *
+	 * [--force]
+	 * : Always generate alt text, even if some already exists.
+	 *
 	 * @subcommand generate-alt-text
 	 */
-	public function generate_alt_text( $args ) {
+	public function generate_alt_text( $args, $assoc_args ) {
+
+		$force = Utils\get_flag_value( $assoc_args, 'force' );
 
 		$query_args = array(
 			'post_type'      => 'attachment',
@@ -46,7 +51,8 @@ class CLI {
 		$successes = 0;
 		$errors    = 0;
 		foreach ( $images->posts as $id ) {
-			if ( Enrich::generate_alt_text_if_none_exists( $id ) ) {
+			$method = $force ? 'generate_alt_text_always' : 'generate_alt_text_if_none_exists';
+			if ( Enrich::$method( $id ) ) {
 				$successes++;
 			} else {
 				$errors++;
