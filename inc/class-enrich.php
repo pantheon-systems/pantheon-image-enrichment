@@ -31,7 +31,6 @@ class Enrich {
 		if ( is_wp_error( $enrichment_data ) ) {
 			return false;
 		}
-		error_log( var_export( $enrichment_data, true ) );
 		$alt_text_bits = array();
 		if ( ! empty( $enrichment_data['responses'] ) ) {
 			foreach ( $enrichment_data['responses'] as $response ) {
