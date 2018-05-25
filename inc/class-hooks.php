@@ -13,6 +13,15 @@ namespace Pantheon_Image_Enrichment;
 class Hooks {
 
 	/**
+	 * Automatically generate alt text when a new attachment is uploaded.
+	 *
+	 * @param integer $attachment_id ID for the newly uploaded attachment.
+	 */
+	public static function action_add_attachment( $attachment_id ) {
+		Enrich::generate_alt_text_if_none_exists( $attachment_id );
+	}
+
+	/**
 	 * Remove the enrichment key anytime alt text is updated.
 	 *
 	 * We can assume that if the alt text is updated elsewhere, it's no longer

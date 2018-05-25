@@ -15,10 +15,18 @@
 /**
  * All of the integration points between the plugin and WordPress.
  */
-add_action( 'updated_post_meta', array(
-	'Pantheon_Image_Enrichment\Hooks',
-	'action_updated_post_meta_remove_key',
-), 10, 3 );
+add_action(
+	'add_attachment', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'action_add_attachment',
+	)
+);
+add_action(
+	'updated_post_meta', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'action_updated_post_meta_remove_key',
+	), 10, 3
+);
 
 /**
  * Registers the class autoloader.
