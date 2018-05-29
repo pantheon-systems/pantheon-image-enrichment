@@ -85,7 +85,7 @@ class GCV {
 					// The test suite can increment filenames indefinitely;
 					// because we're simply creating a unique-ish hash, it's
 					// fine that this value is a little lossy.
-					preg_replace( '#[\d]+$#', '', pathinfo( $file_path, PATHINFO_FILENAME ) ),
+					preg_replace( '#-[\d]+$#', '', pathinfo( $file_path, PATHINFO_FILENAME ) ),
 					$request_body['features'],
 				)
 			)
