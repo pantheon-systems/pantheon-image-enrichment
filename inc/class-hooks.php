@@ -38,4 +38,24 @@ class Hooks {
 		}
 		delete_post_meta( $object_id, Enrich::ENRICHED_META_KEY );
 	}
+
+	/**
+	 * Ensure the image meets Google SafeSearch criteria before processing.
+	 *
+	 * @param array $file An array of data for a single file.
+	 */
+	public static function filter_wp_handle_upload_prefilter( $file ) {
+		if ( empty( $file['tmp_name'] ) ) {
+			return $file;
+		}
+		if ( empty( $file['type'] ) || 0 !== stripos( $file['type'], 'image/' ) ) {
+			return $file;
+		}
+		$violations = Enrich::get_likely_safe_search_violations( $file['tmp_name'] );
+		if ( $violations ) {
+			// translators: Communicates all returned likely violations.
+			$file['error'] = sprintf( __( 'Image has likely or very likely Google Safe Search violations: %s.', 'pantheon-image-enrichment' ), implode( ', ', $violations ) );
+		}
+		return $file;
+	}
 }

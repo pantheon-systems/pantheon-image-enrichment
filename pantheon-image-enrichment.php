@@ -27,6 +27,24 @@ add_action(
 		'action_updated_post_meta_remove_key',
 	), 10, 3
 );
+add_filter(
+	'wp_handle_upload_prefilter', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'filter_wp_handle_upload_prefilter',
+	)
+);
+add_filter(
+	'wp_handle_sideload_prefilter', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'filter_wp_handle_upload_prefilter',
+	)
+);
+add_filter(
+	'wp_handle_mock_upload_prefilter', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'filter_wp_handle_upload_prefilter',
+	)
+);
 
 /**
  * Registers the class autoloader.

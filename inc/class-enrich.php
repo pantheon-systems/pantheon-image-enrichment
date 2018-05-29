@@ -66,7 +66,7 @@ class Enrich {
 		if ( ! $attachment_id || ! $attachment ) {
 			return false;
 		}
-		$enrichment_data = GCV::get_enrichment_data( $attachment_id, array( 'LABEL_DETECTION' ) );
+		$enrichment_data = GCV::get_attachment_enrichment_data( $attachment_id, array( 'LABEL_DETECTION' ) );
 		if ( is_wp_error( $enrichment_data ) ) {
 			return false;
 		}
@@ -84,6 +84,36 @@ class Enrich {
 		update_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, $alt_text );
 		update_post_meta( $attachment_id, self::ENRICHED_META_KEY, 1 );
 		return true;
+	}
+
+	/**
+	 * Get any LIKELY or VERY_LIKELY Google Safe Search violations.
+	 *
+	 * @param string $file_path Path to the file to check.
+	 * @return array
+	 */
+	public static function get_likely_safe_search_violations( $file_path ) {
+		if ( ! is_readable( $file_path ) ) {
+			return array();
+		}
+		$enrichment_data = GCV::get_file_enrichment_data( $file_path, array( 'SAFE_SEARCH_DETECTION' ) );
+		if ( is_wp_error( $enrichment_data ) ) {
+			return array();
+		}
+		$likely_violations = array();
+		if ( ! empty( $enrichment_data['responses'] ) ) {
+			foreach ( $enrichment_data['responses'] as $response ) {
+				if ( ! empty( $response['safeSearchAnnotation'] ) ) {
+					foreach ( $response['safeSearchAnnotation'] as $violation => $status ) {
+						if ( in_array( $status, array( 'LIKELY', 'VERY_LIKELY' ), true ) ) {
+							$likely_violations[] = $violation;
+						}
+					}
+				}
+			}
+		}
+		$likely_violations = array_unique( $likely_violations );
+		return $likely_violations;
 	}
 
 }

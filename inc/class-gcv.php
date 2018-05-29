@@ -28,11 +28,7 @@ class GCV {
 	 * @param array   $features      Which enrichment features to request.
 	 * @return mixed Data object if success, WP_Error if failure.
 	 */
-	public static function get_enrichment_data( $attachment_id, $features = array() ) {
-
-		if ( empty( $features ) ) {
-			$features = array( 'LABEL_DETECTION' );
-		}
+	public static function get_attachment_enrichment_data( $attachment_id, $features = array() ) {
 
 		$attachment = get_post( $attachment_id );
 		if ( ! $attachment_id || ! $attachment ) {
@@ -44,9 +40,25 @@ class GCV {
 			return new WP_Error( 'pie-invalid-attachment', __( 'Attachment file doesn\'t exist.', 'pantheon-image-enrichment' ) );
 		}
 
+		return self::get_file_enrichment_data( $attached_file, $features );
+	}
+
+	/**
+	 * Get the Google Cloud Vision enrichment data for a given file.
+	 *
+	 * @param string $file_path Path to the file to check.
+	 * @param array  $features  Which enrichment features to request.
+	 * @return mixed Data object if success, WP_Error if failure.
+	 */
+	public static function get_file_enrichment_data( $file_path, $features = array() ) {
+
+		if ( empty( $features ) ) {
+			$features = array( 'LABEL_DETECTION' );
+		}
+
 		$request_body = array(
 			'image'    => array(
-				'content' => base64_encode( file_get_contents( $attached_file ) ),
+				'content' => base64_encode( file_get_contents( $file_path ) ),
 			),
 			'features' => array(),
 		);
@@ -56,6 +68,11 @@ class GCV {
 					$request_body['features'][] = array(
 						'type'       => 'LABEL_DETECTION',
 						'maxResults' => 10,
+					);
+					break;
+				case 'SAFE_SEARCH_DETECTION':
+					$request_body['features'][] = array(
+						'type' => 'SAFE_SEARCH_DETECTION',
 					);
 					break;
 			}
@@ -68,7 +85,7 @@ class GCV {
 					// The test suite can increment filenames indefinitely;
 					// because we're simply creating a unique-ish hash, it's
 					// fine that this value is a little lossy.
-					preg_replace( '#[\d]+$#', '', pathinfo( $attached_file, PATHINFO_FILENAME ) ),
+					preg_replace( '#-[\d]+$#', '', pathinfo( $file_path, PATHINFO_FILENAME ) ),
 					$request_body['features'],
 				)
 			)
@@ -87,7 +104,7 @@ class GCV {
 					),
 				)
 			),
-			'timeout' => 20,
+			'timeout' => 40,
 		);
 		$request_url = self::ENRICHMENT_ENDPOINT;
 		if ( defined( 'PIE_GCV_API_KEY' ) && PIE_GCV_API_KEY ) {
@@ -106,5 +123,6 @@ class GCV {
 		}
 		return $response_body;
 	}
+
 
 }
