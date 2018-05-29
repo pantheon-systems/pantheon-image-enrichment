@@ -39,6 +39,12 @@ add_filter(
 		'filter_wp_handle_upload_prefilter',
 	)
 );
+add_filter(
+	'wp_handle_mock_upload_prefilter', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'filter_wp_handle_upload_prefilter',
+	)
+);
 
 /**
  * Registers the class autoloader.

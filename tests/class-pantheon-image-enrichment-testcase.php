@@ -45,4 +45,24 @@ class Pantheon_Image_Enrichment_Testcase extends WP_UnitTestCase {
 
 		return $id;
 	}
+
+	/**
+	 * Create a $FILES array based on provided filename.
+	 *
+	 * @param string $file_path Path to file to use.
+	 * @return array
+	 */
+	protected function create_files_array( $file_path ) {
+		$files = array();
+		$tmp_file = wp_tempnam( $file_path );
+		// Replace random data with only random digits.
+		$tmp_file = preg_replace( '#-[^\.]+\.#', '-' . mt_rand() . '.', $tmp_file );
+		copy( $file_path, $tmp_file );
+		$files['file'] = array(
+			'tmp_name' => $tmp_file,
+			'name'     => basename( $file_path ),
+			'type'     => 'image/jpeg',
+		);
+		return $files;
+	}
 }

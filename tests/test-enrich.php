@@ -53,4 +53,32 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 		$this->assertFalse( (bool) get_post_meta( $attachment_id, Enrich::ENRICHED_META_KEY, true ) );
 	}
 
+	/**
+	 * Non-racy images should be uploaded just fine.
+	 */
+	public function test_safe_search_upload_safe_image() {
+		$files = $this->create_files_array( dirname( __FILE__ ) . '/data/canola.jpg' );
+		$overrides = array(
+			'test_form' => false,
+			'action'    => 'wp_handle_mock_upload',
+		);
+		$file = wp_handle_upload( $files['file'], $overrides );
+		$this->assertFalse( isset( $file['error'] ) );
+		$this->assertEquals( 'image/jpeg', $file['type'] );
+	}
+
+	/**
+	 * Racy images should be blocked from upload.
+	 */
+	public function test_safe_search_block_racy_image() {
+		$files = $this->create_files_array( dirname( __FILE__ ) . '/data/racy-image.jpg' );
+		$overrides = array(
+			'test_form' => false,
+			'action'    => 'wp_handle_mock_upload',
+		);
+		$file = wp_handle_upload( $files['file'], $overrides );
+		$this->assertTrue( isset( $file['error'] ) );
+		$this->assertContains( 'Image has likely or very likely Google Safe Search violations:', $file['error'] );
+	}
+
 }
