@@ -53,7 +53,7 @@ class Pantheon_Image_Enrichment_Testcase extends WP_UnitTestCase {
 	 * @return array
 	 */
 	protected function create_files_array( $file_path ) {
-		$files = array();
+		$files    = array();
 		$tmp_file = wp_tempnam( $file_path );
 		// Replace random data with only random digits.
 		$tmp_file = preg_replace( '#-[^\.]+\.#', '-' . mt_rand() . '.', $tmp_file );
