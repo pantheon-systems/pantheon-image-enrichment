@@ -33,19 +33,19 @@ To install Pantheon Image Enrichment in one line with WP-CLI:
 
 == WP-CLI Commands ==
 
-This plugin implements a variety of [WP-CLI](https://wp-cli.org) commands. All commands are grouped into the `wp pie` namespace.
+This plugin implements a variety of [WP-CLI](https://wp-cli.org) commands. All commands are grouped into the `wp pantheon image` namespace.
 
     NAME
     
-      wp pie
+      wp pantheon image
     
     DESCRIPTION
     
-      Manage Pantheon Image Enrichment.
+      Generates default alt text and more.
     
     SYNOPSIS
     
-      wp pie <command>
+      wp pantheon image <command>
     
     SUBCOMMANDS
     
