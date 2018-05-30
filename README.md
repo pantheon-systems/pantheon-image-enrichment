@@ -1,15 +1,15 @@
-=== Pantheon Image Enrichment ===
-Contributors: getpantheon, danielbachhuber
-Tags: pantheon, images
-Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 0.0.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+# Pantheon Image Enrichment #
+**Contributors:** getpantheon, danielbachhuber  
+**Tags:** pantheon, images  
+**Requires at least:** 4.7  
+**Tested up to:** 4.9  
+**Stable tag:** 0.0.0  
+**License:** GPLv2 or later  
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
 Generate default alt text, block unsafe uploads, and enrich images using the Google Cloud Vision API.
 
-== Description ==
+## Description ##
 
 [![Travis CI](https://travis-ci.org/danielbachhuber/pantheon-image-enrichment.svg?branch=master)](https://travis-ci.org/danielbachhuber/pantheon-image-enrichment)
 
@@ -20,7 +20,7 @@ Supercharge your WordPress Media Library with a variety of enhancements via the 
 
 Go forth and make awesome! And, once you've built something great, [send us feature requests (or bug reports)](https://github.com/danielbachhuber/pantheon-image-enrichment/issues).
 
-== Installation ==
+## Installation ##
 
 To install Pantheon Image Enrichment, follow these steps:
 
@@ -31,7 +31,7 @@ To install Pantheon Image Enrichment in one line with WP-CLI:
 
     wp plugin install pantheon-image-enrichment --activate
 
-== WP-CLI Commands ==
+## WP-CLI Commands ##
 
 This plugin implements a variety of [WP-CLI](https://wp-cli.org) commands. All commands are grouped into the `wp pie` namespace.
 
@@ -51,7 +51,7 @@ This plugin implements a variety of [WP-CLI](https://wp-cli.org) commands. All c
     
       generate-alt-text      Generate alt text for attachments.
 
-== Changelog ==
+## Changelog ##
 
-= 0.1.0 (???? ??, 2018) =
+### 0.1.0 (???? ??, 2018) ###
 * Initial release.

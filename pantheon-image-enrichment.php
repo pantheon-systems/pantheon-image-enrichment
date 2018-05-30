@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Pantheon Image Enrichment
  * Plugin URI:      https://pantheon.io
- * Description:     Generate default alt text, auto-crop and more.
+ * Description:     Generate default alt text, block unsafe uploads and more.
  * Author:          Pantheon
  * Author URI:      https://pantheon.io
  * Text Domain:     pantheon-image-enrichment
