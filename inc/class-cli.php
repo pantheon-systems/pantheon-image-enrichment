@@ -12,7 +12,7 @@ use WP_CLI\Utils;
 use WP_Query;
 
 /**
- * Manage Pantheon Image Enrichment.
+ * Generates default alt text and more.
  */
 class CLI {
 

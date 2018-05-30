@@ -72,5 +72,5 @@ spl_autoload_register(
  * Registers the WP-CLI commands.
  */
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	WP_CLI::add_command( 'pie', 'Pantheon_Image_Enrichment\CLI' );
+	WP_CLI::add_command( 'pantheon image', 'Pantheon_Image_Enrichment\CLI' );
 }
