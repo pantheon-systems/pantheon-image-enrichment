@@ -18,7 +18,7 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	public function test_generate_alt_text_for_attachment_when_missing() {
 		$file          = dirname( __FILE__ ) . '/data/canola.jpg';
 		$attachment_id = $this->create_upload_object( $file );
-		$this->assertEquals( 'yellow, rapeseed, field, canola, grassland, mustard plant, plain, prairie, mustard and cabbage family, sky', Enrich::get_attachment_alt_text( $attachment_id ) );
+		$this->assertEquals( 'yellow, rapeseed, field, canola, grassland', Enrich::get_attachment_alt_text( $attachment_id ) );
 		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
 	}
 
