@@ -23,14 +23,14 @@
                 {
                     "mid": "\/m\/0ltws",
                     "description": "canola",
-                    "score": 0.94539434,
-                    "topicality": 0.94539434
+                    "score": 0.945394,
+                    "topicality": 0.945394
                 },
                 {
                     "mid": "\/m\/01c7cq",
                     "description": "grassland",
-                    "score": 0.92240983,
-                    "topicality": 0.92240983
+                    "score": 0.9224099,
+                    "topicality": 0.9224099
                 },
                 {
                     "mid": "\/m\/06g7kb",
@@ -47,8 +47,8 @@
                 {
                     "mid": "\/m\/0hkvx",
                     "description": "prairie",
-                    "score": 0.88483316,
-                    "topicality": 0.88483316
+                    "score": 0.88483304,
+                    "topicality": 0.88483304
                 },
                 {
                     "mid": "\/m\/01820",
@@ -59,8 +59,8 @@
                 {
                     "mid": "\/m\/01bqvp",
                     "description": "sky",
-                    "score": 0.82901937,
-                    "topicality": 0.82901937
+                    "score": 0.8290194,
+                    "topicality": 0.8290194
                 }
             ]
         }
