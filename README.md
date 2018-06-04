@@ -13,10 +13,11 @@ Generate default alt text, block unsafe uploads, and enrich images using the Goo
 
 [![Travis CI](https://travis-ci.org/danielbachhuber/pantheon-image-enrichment.svg?branch=master)](https://travis-ci.org/danielbachhuber/pantheon-image-enrichment)
 
-Supercharge your WordPress Media Library with a variety of enhancements via the Google Cloud Vision API:
+Supercharge your WordPress Media Library with a variety of enhancements via the Google Cloud Vision API.
 
-* Generate default alt text
-* Block unsafe uploads
+Generates default alt text for new and existing images. Uses the landmark or logo if one is detected in the image, otherwise generates a comma-separated list of descriptive labels.
+
+Blocks uploading of images deemed unfit for Google Safe Search. Default behavior is to reject any images deemed likely or very likely to be adult, spoof, medical, violence, or racy.
 
 Go forth and make awesome! And, once you've built something great, [send us feature requests (or bug reports)](https://github.com/danielbachhuber/pantheon-image-enrichment/issues).
 
