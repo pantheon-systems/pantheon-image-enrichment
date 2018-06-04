@@ -2,11 +2,11 @@
     "responses": [
         {
             "safeSearchAnnotation": {
-                "adult": "VERY_UNLIKELY",
+                "adult": "UNLIKELY",
                 "spoof": "VERY_UNLIKELY",
-                "medical": "VERY_UNLIKELY",
-                "violence": "VERY_UNLIKELY",
-                "racy": "LIKELY"
+                "medical": "POSSIBLE",
+                "violence": "LIKELY",
+                "racy": "VERY_LIKELY"
             }
         }
     ]
