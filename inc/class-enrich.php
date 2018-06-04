@@ -101,7 +101,7 @@ class Enrich {
 		} elseif ( ! empty( $logo_bits ) ) {
 			$alt_text = implode( ', ', $logo_bits );
 		} else {
-			$alt_text = implode( ', ', $label_bits );
+			$alt_text = implode( ', ', array_slice( $label_bits, 0, 5 ) );
 		}
 		update_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, $alt_text );
 		update_post_meta( $attachment_id, self::ENRICHED_META_KEY, 1 );
