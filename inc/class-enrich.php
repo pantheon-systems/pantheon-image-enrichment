@@ -67,6 +67,7 @@ class Enrich {
 		$enrichment_data = GCV::get_attachment_enrichment_data(
 			$attachment_id, array(
 				'LANDMARK_DETECTION',
+				'LOGO_DETECTION',
 				'LABEL_DETECTION',
 			)
 		);
@@ -74,12 +75,18 @@ class Enrich {
 			return false;
 		}
 		$landmark_bits = array();
+		$logo_bits     = array();
 		$label_bits    = array();
 		if ( ! empty( $enrichment_data['responses'] ) ) {
 			foreach ( $enrichment_data['responses'] as $response ) {
 				if ( ! empty( $response['landmarkAnnotations'] ) ) {
 					foreach ( $response['landmarkAnnotations'] as $annotation ) {
 						$landmark_bits[] = $annotation['description'];
+					}
+				}
+				if ( ! empty( $response['logoAnnotations'] ) ) {
+					foreach ( $response['logoAnnotations'] as $annotation ) {
+						$logo_bits[] = $annotation['description'];
 					}
 				}
 				if ( ! empty( $response['labelAnnotations'] ) ) {
@@ -91,6 +98,8 @@ class Enrich {
 		}
 		if ( ! empty( $landmark_bits ) ) {
 			$alt_text = implode( ', ', $landmark_bits );
+		} elseif ( ! empty( $logo_bits ) ) {
+			$alt_text = implode( ', ', $logo_bits );
 		} else {
 			$alt_text = implode( ', ', $label_bits );
 		}
