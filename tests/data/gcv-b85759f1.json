@@ -1,0 +1,95 @@
+{
+    "responses": [
+        {
+            "logoAnnotations": [
+                {
+                    "mid": "\/m\/01yvs",
+                    "description": "Coca-Cola",
+                    "score": 0.6331999,
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 132,
+                                "y": 100
+                            },
+                            {
+                                "x": 508,
+                                "y": 100
+                            },
+                            {
+                                "x": 508,
+                                "y": 227
+                            },
+                            {
+                                "x": 132,
+                                "y": 227
+                            }
+                        ]
+                    }
+                }
+            ],
+            "labelAnnotations": [
+                {
+                    "mid": "\/m\/07s6nbt",
+                    "description": "text",
+                    "score": 0.9267483,
+                    "topicality": 0.9267483
+                },
+                {
+                    "mid": "\/m\/03gq5hm",
+                    "description": "font",
+                    "score": 0.7915953,
+                    "topicality": 0.7915953
+                },
+                {
+                    "mid": "\/m\/01yvs",
+                    "description": "coca cola",
+                    "score": 0.7514862,
+                    "topicality": 0.7514862
+                },
+                {
+                    "mid": "\/m\/0dwx7",
+                    "description": "logo",
+                    "score": 0.73724854,
+                    "topicality": 0.73724854
+                },
+                {
+                    "mid": "\/m\/02n3pb",
+                    "description": "product",
+                    "score": 0.7006689,
+                    "topicality": 0.7006689
+                },
+                {
+                    "mid": "\/m\/06qrr",
+                    "description": "soft drink",
+                    "score": 0.6754166,
+                    "topicality": 0.6754166
+                },
+                {
+                    "mid": "\/m\/0n0j",
+                    "description": "area",
+                    "score": 0.6720096,
+                    "topicality": 0.6720096
+                },
+                {
+                    "mid": "\/m\/059r7w6",
+                    "description": "carbonated soft drinks",
+                    "score": 0.6706397,
+                    "topicality": 0.6706397
+                },
+                {
+                    "mid": "\/m\/03scnj",
+                    "description": "line",
+                    "score": 0.6536917,
+                    "topicality": 0.6536917
+                },
+                {
+                    "mid": "\/m\/023ls",
+                    "description": "cola",
+                    "score": 0.6325906,
+                    "topicality": 0.6325906
+                }
+            ]
+        }
+    ]
+}

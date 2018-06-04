@@ -70,6 +70,16 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	}
 
 	/**
+	 * If the image has a logo, use that as the alt text over labels.
+	 */
+	public function test_use_logo_for_alt_text_when_exists() {
+		$file          = dirname( __FILE__ ) . '/data/cocacola.jpg';
+		$attachment_id = $this->create_upload_object( $file );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
+		$this->assertEquals( 'Coca-Cola', Enrich::get_attachment_alt_text( $attachment_id ) );
+	}
+
+	/**
 	 * Non-racy images should be uploaded just fine.
 	 */
 	public function test_safe_search_upload_safe_image() {

@@ -75,6 +75,11 @@ class GCV {
 						'type' => 'LANDMARK_DETECTION',
 					);
 					break;
+				case 'LOGO_DETECTION':
+					$request_body['features'][] = array(
+						'type' => 'LOGO_DETECTION',
+					);
+					break;
 				case 'SAFE_SEARCH_DETECTION':
 					$request_body['features'][] = array(
 						'type' => 'SAFE_SEARCH_DETECTION',
