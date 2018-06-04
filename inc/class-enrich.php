@@ -64,21 +64,36 @@ class Enrich {
 		if ( ! $attachment_id || ! $attachment ) {
 			return false;
 		}
-		$enrichment_data = GCV::get_attachment_enrichment_data( $attachment_id, array( 'LABEL_DETECTION' ) );
+		$enrichment_data = GCV::get_attachment_enrichment_data(
+			$attachment_id, array(
+				'LANDMARK_DETECTION',
+				'LABEL_DETECTION',
+			)
+		);
 		if ( is_wp_error( $enrichment_data ) ) {
 			return false;
 		}
-		$alt_text_bits = array();
+		$landmark_bits = array();
+		$label_bits    = array();
 		if ( ! empty( $enrichment_data['responses'] ) ) {
 			foreach ( $enrichment_data['responses'] as $response ) {
+				if ( ! empty( $response['landmarkAnnotations'] ) ) {
+					foreach ( $response['landmarkAnnotations'] as $annotation ) {
+						$landmark_bits[] = $annotation['description'];
+					}
+				}
 				if ( ! empty( $response['labelAnnotations'] ) ) {
 					foreach ( $response['labelAnnotations'] as $annotation ) {
-						$alt_text_bits[] = $annotation['description'];
+						$label_bits[] = $annotation['description'];
 					}
 				}
 			}
 		}
-		$alt_text = implode( ', ', $alt_text_bits );
+		if ( ! empty( $landmark_bits ) ) {
+			$alt_text = implode( ', ', $landmark_bits );
+		} else {
+			$alt_text = implode( ', ', $label_bits );
+		}
 		update_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, $alt_text );
 		update_post_meta( $attachment_id, self::ENRICHED_META_KEY, 1 );
 		return true;
