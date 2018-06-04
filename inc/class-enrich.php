@@ -33,8 +33,7 @@ class Enrich {
 	 * @return bool
 	 */
 	public static function generate_alt_text_if_none_exists( $attachment_id ) {
-		$alt_text = get_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, true );
-		if ( '' !== $alt_text ) {
+		if ( '' !== self::get_attachment_alt_text( $attachment_id ) ) {
 			return false;
 		}
 		return self::generate_alt_text_always( $attachment_id );
@@ -47,9 +46,8 @@ class Enrich {
 	 * @return bool
 	 */
 	public static function generate_alt_text_if_missing_or_previously_enriched( $attachment_id ) {
-		$enriched = get_post_meta( $attachment_id, self::ENRICHED_META_KEY, true );
-		$alt_text = get_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, true );
-		if ( '' === $alt_text || $enriched ) {
+		if ( '' === self::get_attachment_alt_text( $attachment_id )
+			|| self::is_attachment_enriched( $attachment_id ) ) {
 			return self::generate_alt_text_always( $attachment_id );
 		}
 		return false;
@@ -114,6 +112,26 @@ class Enrich {
 		}
 		$likely_violations = array_unique( $likely_violations );
 		return $likely_violations;
+	}
+
+	/**
+	 * Get the alt text for an attachment.
+	 *
+	 * @param integer $attachment_id ID for the attachment.
+	 * @return string
+	 */
+	public static function get_attachment_alt_text( $attachment_id ) {
+		return get_post_meta( $attachment_id, self::ALT_TEXT_META_KEY, true );
+	}
+
+	/**
+	 * Whether or not the attachment is enriched.
+	 *
+	 * @param integer $attachment_id ID for the attachment.
+	 * @return boolean
+	 */
+	public static function is_attachment_enriched( $attachment_id ) {
+		return (bool) get_post_meta( $attachment_id, self::ENRICHED_META_KEY, true );
 	}
 
 }
