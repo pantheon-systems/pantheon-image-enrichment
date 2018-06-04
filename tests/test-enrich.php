@@ -18,7 +18,8 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	public function test_generate_alt_text_for_attachment_when_missing() {
 		$file          = dirname( __FILE__ ) . '/data/canola.jpg';
 		$attachment_id = $this->create_upload_object( $file );
-		$this->assertEquals( 'yellow, rapeseed, field, canola, grassland, mustard plant, plain, prairie, mustard and cabbage family, sky', get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+		$this->assertEquals( 'yellow, rapeseed, field, canola, grassland, mustard plant, plain, prairie, mustard and cabbage family, sky', Enrich::get_attachment_alt_text( $attachment_id ) );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
 	}
 
 	/**
@@ -27,8 +28,10 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	public function test_generate_alt_text_refresh() {
 		$file          = dirname( __FILE__ ) . '/data/canola.jpg';
 		$attachment_id = $this->create_upload_object( $file );
-		$ret           = Enrich::generate_alt_text_if_missing_or_previously_enriched( $attachment_id );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
+		$ret = Enrich::generate_alt_text_if_missing_or_previously_enriched( $attachment_id );
 		$this->assertTrue( $ret );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
 	}
 
 	/**
@@ -37,9 +40,12 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	public function test_generate_alt_text_no_refresh_when_customized() {
 		$file          = dirname( __FILE__ ) . '/data/canola.jpg';
 		$attachment_id = $this->create_upload_object( $file );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
 		update_post_meta( $attachment_id, '_wp_attachment_image_alt', 'My custom alt text' );
+		$this->assertFalse( Enrich::is_attachment_enriched( $attachment_id ) );
 		$ret = Enrich::generate_alt_text_if_missing_or_previously_enriched( $attachment_id );
 		$this->assertFalse( $ret );
+		$this->assertFalse( Enrich::is_attachment_enriched( $attachment_id ) );
 	}
 
 	/**
@@ -48,9 +54,9 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 	public function test_remove_enrichment_flag_when_alt_text_is_updated() {
 		$file          = dirname( __FILE__ ) . '/data/canola.jpg';
 		$attachment_id = $this->create_upload_object( $file );
-		$this->assertTrue( (bool) get_post_meta( $attachment_id, Enrich::ENRICHED_META_KEY, true ) );
+		$this->assertTrue( Enrich::is_attachment_enriched( $attachment_id ) );
 		update_post_meta( $attachment_id, '_wp_attachment_image_alt', 'My custom alt text' );
-		$this->assertFalse( (bool) get_post_meta( $attachment_id, Enrich::ENRICHED_META_KEY, true ) );
+		$this->assertFalse( Enrich::is_attachment_enriched( $attachment_id ) );
 	}
 
 	/**

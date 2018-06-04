@@ -57,21 +57,37 @@ class CLI {
 
 		$successes = 0;
 		$errors    = 0;
+		$skips     = 0;
 		foreach ( $images->posts as $id ) {
-			$method = 'generate_alt_text_if_none_exists';
+			$method   = 'generate_alt_text_if_none_exists';
+			$alt_text = Enrich::get_attachment_alt_text( $id );
+			$enriched = Enrich::is_attachment_enriched( $id );
 			if ( $refresh ) {
 				$method = 'generate_alt_text_if_missing_or_previously_enriched';
+				if ( '' !== $alt_text && ! $enriched ) {
+					WP_CLI::warning( sprintf( 'Skipping image #%d because it is unenriched.', $id ) );
+					$skips++;
+					continue;
+				}
 			} elseif ( $force ) {
 				$method = 'generate_alt_text_always';
+			} else {
+				if ( '' !== $alt_text ) {
+					WP_CLI::warning( sprintf( 'Skipping image #%d because it already has alt text.', $id ) );
+					$skips++;
+					continue;
+				}
 			}
 			if ( Enrich::$method( $id ) ) {
 				$successes++;
+				WP_CLI::log( sprintf( 'Generated alt text for image #%d: %s', $id, Enrich::get_attachment_alt_text( $id ) ) );
 			} else {
+				WP_CLI::warning( sprintf( 'Unknown error generating alt text for image #%d.', $image_id ) );
 				$errors++;
 			}
 		}
 
-		Utils\report_batch_operation_results( 'image', 'enrich', $count, $successes, $errors );
+		Utils\report_batch_operation_results( 'image', 'enrich', $count, $successes, $errors, $skips );
 	}
 
 }
