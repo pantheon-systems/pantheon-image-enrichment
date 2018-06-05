@@ -37,7 +37,7 @@ class CLI {
 		$refresh = Utils\get_flag_value( $assoc_args, 'refresh' );
 		$force   = Utils\get_flag_value( $assoc_args, 'force' );
 		if ( $refresh && $force ) {
-			WP_CLI::error_log( '--refresh and --force cannot be used at the same time.' );
+			WP_CLI::error( '--refresh and --force cannot be used at the same time.' );
 		}
 
 		$query_args = array(
