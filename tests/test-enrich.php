@@ -6,6 +6,7 @@
  */
 
 use Pantheon_Image_Enrichment\Enrich;
+use Pantheon_Image_Enrichment\GCV;
 
 /**
  * Tests the Enrich class.
@@ -105,6 +106,26 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 		$file      = wp_handle_upload( $files['file'], $overrides );
 		$this->assertTrue( isset( $file['error'] ) );
 		$this->assertContains( 'Image has likely or very likely Google Safe Search violations:', $file['error'] );
+	}
+
+	/**
+	 * Pre-fetching should get all necessary data to be processed.
+	 */
+	public function test_prefetch_file_enrichment_data() {
+		$file      = dirname( __FILE__ ) . '/data/prefetch-image.jpg';
+		$cache_key = GCV::get_file_path_cache_key( $file );
+		// Doesn't exist in cache yet.
+		$this->assertFalse( wp_cache_get( $cache_key, GCV::PREFETCH_CACHE_GROUP ) );
+		// No cache for the default features, so errored.
+		$enrichment_data = GCV::get_file_enrichment_data( $file );
+		$this->assertWPError( $enrichment_data );
+		// Successfully prefetches based on cache for all features.
+		$this->assertTrue( GCV::prefetch_file_enrichment_data( $file ) );
+		// Now it's in cache.
+		$cache_value = wp_cache_get( $cache_key, GCV::PREFETCH_CACHE_GROUP );
+		$this->assertTrue( isset( $cache_value['enrichment_data'] ) );
+		$enrichment_data = GCV::get_file_enrichment_data( $file );
+		$this->assertTrue( isset( $enrichment_data['responses'] ) );
 	}
 
 }
