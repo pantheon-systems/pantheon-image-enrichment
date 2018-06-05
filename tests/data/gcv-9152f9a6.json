@@ -1,0 +1,75 @@
+{
+    "responses": [
+        {
+            "labelAnnotations": [
+                {
+                    "mid": "\/m\/088fh",
+                    "description": "yellow",
+                    "score": 0.94676167,
+                    "topicality": 0.94676167
+                },
+                {
+                    "mid": "\/m\/01h3n",
+                    "description": "bee",
+                    "score": 0.93230397,
+                    "topicality": 0.93230397
+                },
+                {
+                    "mid": "\/m\/0fz0z",
+                    "description": "honey bee",
+                    "score": 0.9203549,
+                    "topicality": 0.9203549
+                },
+                {
+                    "mid": "\/m\/0c9ph5",
+                    "description": "flower",
+                    "score": 0.88345367,
+                    "topicality": 0.88345367
+                },
+                {
+                    "mid": "\/m\/0cnq0",
+                    "description": "pollen",
+                    "score": 0.85217047,
+                    "topicality": 0.85217047
+                },
+                {
+                    "mid": "\/m\/03bmqb",
+                    "description": "flora",
+                    "score": 0.8299325,
+                    "topicality": 0.8299325
+                },
+                {
+                    "mid": "\/m\/0b4zhm",
+                    "description": "nectar",
+                    "score": 0.8186128,
+                    "topicality": 0.8186128
+                },
+                {
+                    "mid": "\/m\/03mp1",
+                    "description": "membrane winged insect",
+                    "score": 0.7866959,
+                    "topicality": 0.7866959
+                },
+                {
+                    "mid": "\/m\/03vt0",
+                    "description": "insect",
+                    "score": 0.78280586,
+                    "topicality": 0.78280586
+                },
+                {
+                    "mid": "\/m\/03rbf6",
+                    "description": "macro photography",
+                    "score": 0.73035574,
+                    "topicality": 0.73035574
+                }
+            ],
+            "safeSearchAnnotation": {
+                "adult": "VERY_UNLIKELY",
+                "spoof": "VERY_UNLIKELY",
+                "medical": "VERY_UNLIKELY",
+                "violence": "VERY_UNLIKELY",
+                "racy": "VERY_UNLIKELY"
+            }
+        }
+    ]
+}

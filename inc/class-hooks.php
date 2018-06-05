@@ -51,6 +51,8 @@ class Hooks {
 		if ( empty( $file['type'] ) || 0 !== stripos( $file['type'], 'image/' ) ) {
 			return $file;
 		}
+		// Prefetch all data for later use.
+		GCV::prefetch_file_enrichment_data( $file['tmp_name'] );
 		$violations = Enrich::get_likely_safe_search_violations( $file['tmp_name'] );
 		if ( $violations ) {
 			// translators: Communicates all returned likely violations.
