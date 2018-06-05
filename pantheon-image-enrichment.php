@@ -69,6 +69,11 @@ spl_autoload_register(
 );
 
 /**
+ * Make our prefetch cache group non-persistent.
+ */
+wp_cache_add_non_persistent_groups( Pantheon_Image_Enrichment\GCV::PREFETCH_CACHE_GROUP );
+
+/**
  * Registers the WP-CLI commands.
  */
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

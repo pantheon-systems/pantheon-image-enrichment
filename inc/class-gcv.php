@@ -71,7 +71,7 @@ class GCV {
 				'features'        => self::PREFETCH_FEATURES,
 				'enrichment_data' => $enrichment_data,
 			);
-			wp_cache_set( $cache_key, $file_data, self::PREFETCH_CACHE_GROUP, 5 * MINUTE_IN_SECONDS );
+			wp_cache_set( $cache_key, $file_data, self::PREFETCH_CACHE_GROUP );
 			return true;
 		}
 		return false;
@@ -225,6 +225,7 @@ class GCV {
 		if ( ! $fp ) {
 			return false;
 		}
+		// 16kb of data should be sufficiently unique.
 		$contents = fread( $fp, 1024 * 16 );
 		return md5( $contents );
 	}
