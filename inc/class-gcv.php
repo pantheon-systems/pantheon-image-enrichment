@@ -127,7 +127,9 @@ class GCV {
 		$response_code = wp_remote_retrieve_response_code( $response );
 		$response_body = wp_remote_retrieve_body( $response );
 		$response_body = json_decode( $response_body, true );
-		file_put_contents( dirname( __DIR__ ) . '/tests/data/gcv-' . $request_signature . '.json', json_encode( $response_body, JSON_PRETTY_PRINT ) );
+		if ( defined( 'PIE_RUNNING_TESTS' ) && PIE_RUNNING_TESTS ) {
+			file_put_contents( dirname( __DIR__ ) . '/tests/data/gcv-' . $request_signature . '.json', json_encode( $response_body, JSON_PRETTY_PRINT ) );
+		}
 		if ( 200 !== $response_code ) {
 			// translators: Message communicating the API failure.
 			return new WP_Error( 'pie-invalid-response', sprintf( __( 'Error with GCV request: %1$s (HTTP code %2$d)', 'pantheon-image-enrichment' ), $response_body['error']['message'], $response_code ) );
