@@ -127,6 +127,7 @@ class GCV {
 		$response_code = wp_remote_retrieve_response_code( $response );
 		$response_body = wp_remote_retrieve_body( $response );
 		$response_body = json_decode( $response_body, true );
+		// Refresh test data when running unit tests.
 		if ( defined( 'PIE_RUNNING_TESTS' ) && PIE_RUNNING_TESTS ) {
 			file_put_contents( dirname( __DIR__ ) . '/tests/data/gcv-' . $request_signature . '.json', json_encode( $response_body, JSON_PRETTY_PRINT ) );
 		}
