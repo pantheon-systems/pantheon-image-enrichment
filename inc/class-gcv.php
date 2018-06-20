@@ -34,6 +34,7 @@ class GCV {
 	 * @var array
 	 */
 	const PREFETCH_FEATURES = array(
+		'CROP_HINTS',
 		'LABEL_DETECTION',
 		'LANDMARK_DETECTION',
 		'LOGO_DETECTION',
@@ -46,6 +47,7 @@ class GCV {
 	 * @var array
 	 */
 	const PREFETCH_RESPONSE_KEYS = array(
+		'CROP_HINTS'            => 'cropHintsAnnotation',
 		'LABEL_DETECTION'       => 'labelAnnotations',
 		'LANDMARK_DETECTION'    => 'landmarkAnnotations',
 		'LOGO_DETECTION'        => 'logoAnnotations',
@@ -144,6 +146,18 @@ class GCV {
 		);
 		foreach ( $features as $feature ) {
 			switch ( $feature ) {
+				case 'CROP_HINTS':
+					$request_body['features'][]                      = array(
+						'type' => 'CROP_HINTS',
+					);
+					$request_body['imageContext']['cropHintsParams'] = array(
+						'aspectRatios' => array(
+							// Square aspect ratio gives us roughly
+							// the focal point.
+							1,
+						),
+					);
+					break;
 				case 'LABEL_DETECTION':
 					$request_body['features'][] = array(
 						'type'       => 'LABEL_DETECTION',

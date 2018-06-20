@@ -62,7 +62,37 @@
                     "score": 0.82901937,
                     "topicality": 0.82901937
                 }
-            ]
+            ],
+            "safeSearchAnnotation": {
+                "adult": "VERY_UNLIKELY",
+                "spoof": "VERY_UNLIKELY",
+                "medical": "VERY_UNLIKELY",
+                "violence": "VERY_UNLIKELY",
+                "racy": "VERY_UNLIKELY"
+            },
+            "cropHintsAnnotation": {
+                "cropHints": [
+                    {
+                        "boundingPoly": {
+                            "vertices": [
+                                [],
+                                {
+                                    "x": 485
+                                },
+                                {
+                                    "x": 485,
+                                    "y": 479
+                                },
+                                {
+                                    "y": 479
+                                }
+                            ]
+                        },
+                        "confidence": 0.79999995,
+                        "importanceFraction": 0.81
+                    }
+                ]
+            }
         }
     ]
 }

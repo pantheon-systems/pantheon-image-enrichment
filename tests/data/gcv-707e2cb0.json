@@ -1,0 +1,101 @@
+{
+    "responses": [
+        {
+            "labelAnnotations": [
+                {
+                    "mid": "\/m\/02xht4g",
+                    "description": "medical",
+                    "score": 0.80890673,
+                    "topicality": 0.80890673
+                },
+                {
+                    "mid": "\/m\/0k65p",
+                    "description": "hand",
+                    "score": 0.79339164,
+                    "topicality": 0.79339164
+                },
+                {
+                    "mid": "\/m\/09cx8",
+                    "description": "finger",
+                    "score": 0.78616434,
+                    "topicality": 0.78616434
+                },
+                {
+                    "mid": "\/m\/0dzf4",
+                    "description": "arm",
+                    "score": 0.74644005,
+                    "topicality": 0.74644005
+                },
+                {
+                    "mid": "\/m\/02p0tk3",
+                    "description": "human body",
+                    "score": 0.74117637,
+                    "topicality": 0.74117637
+                },
+                {
+                    "mid": "\/m\/018tkd",
+                    "description": "service",
+                    "score": 0.73026896,
+                    "topicality": 0.73026896
+                },
+                {
+                    "mid": "\/m\/0283dt1",
+                    "description": "mouth",
+                    "score": 0.6909928,
+                    "topicality": 0.6909928
+                },
+                {
+                    "mid": "\/m\/02p16m6",
+                    "description": "flesh",
+                    "score": 0.68680054,
+                    "topicality": 0.68680054
+                },
+                {
+                    "mid": "\/m\/02cwm",
+                    "description": "design",
+                    "score": 0.67710096,
+                    "topicality": 0.67710096
+                },
+                {
+                    "mid": "\/m\/013y0j",
+                    "description": "organ",
+                    "score": 0.6770281,
+                    "topicality": 0.6770281
+                }
+            ],
+            "safeSearchAnnotation": {
+                "adult": "UNLIKELY",
+                "spoof": "VERY_UNLIKELY",
+                "medical": "POSSIBLE",
+                "violence": "LIKELY",
+                "racy": "VERY_LIKELY"
+            },
+            "cropHintsAnnotation": {
+                "cropHints": [
+                    {
+                        "boundingPoly": {
+                            "vertices": [
+                                {
+                                    "x": 87
+                                },
+                                {
+                                    "x": 695
+                                },
+                                {
+                                    "x": 695,
+                                    "y": 599
+                                },
+                                {
+                                    "x": 87,
+                                    "y": 599
+                                }
+                            ]
+                        },
+                        "confidence": 0.79999995,
+                        "importanceFraction": 0.85999995
+                    }
+                ]
+            }
+        }
+    ]
+}

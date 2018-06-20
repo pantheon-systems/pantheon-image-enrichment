@@ -17,32 +17,32 @@
                 {
                     "mid": "\/m\/0fz0z",
                     "description": "honey bee",
-                    "score": 0.9203549,
-                    "topicality": 0.9203549
+                    "score": 0.92035496,
+                    "topicality": 0.92035496
                 },
                 {
                     "mid": "\/m\/0c9ph5",
                     "description": "flower",
-                    "score": 0.88345367,
-                    "topicality": 0.88345367
+                    "score": 0.8834537,
+                    "topicality": 0.8834537
                 },
                 {
                     "mid": "\/m\/0cnq0",
                     "description": "pollen",
-                    "score": 0.85217047,
-                    "topicality": 0.85217047
+                    "score": 0.85217035,
+                    "topicality": 0.85217035
                 },
                 {
                     "mid": "\/m\/03bmqb",
                     "description": "flora",
-                    "score": 0.8299325,
-                    "topicality": 0.8299325
+                    "score": 0.8299324,
+                    "topicality": 0.8299324
                 },
                 {
                     "mid": "\/m\/0b4zhm",
                     "description": "nectar",
-                    "score": 0.8186128,
-                    "topicality": 0.8186128
+                    "score": 0.8186127,
+                    "topicality": 0.8186127
                 },
                 {
                     "mid": "\/m\/03mp1",
@@ -59,8 +59,8 @@
                 {
                     "mid": "\/m\/03rbf6",
                     "description": "macro photography",
-                    "score": 0.73035574,
-                    "topicality": 0.73035574
+                    "score": 0.7303559,
+                    "topicality": 0.7303559
                 }
             ],
             "safeSearchAnnotation": {
@@ -69,6 +69,32 @@
                 "medical": "VERY_UNLIKELY",
                 "violence": "VERY_UNLIKELY",
                 "racy": "VERY_UNLIKELY"
+            },
+            "cropHintsAnnotation": {
+                "cropHints": [
+                    {
+                        "boundingPoly": {
+                            "vertices": [
+                                {
+                                    "x": 95
+                                },
+                                {
+                                    "x": 399
+                                },
+                                {
+                                    "x": 399,
+                                    "y": 299
+                                },
+                                {
+                                    "x": 95,
+                                    "y": 299
+                                }
+                            ]
+                        },
+                        "confidence": 0.79999995,
+                        "importanceFraction": 0.98999995
+                    }
+                ]
             }
         }
     ]

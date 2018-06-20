@@ -139,6 +139,42 @@ class Enrich {
 	}
 
 	/**
+	 * Get quadrant-based crop suggestions for a given image.
+	 *
+	 * @param string $file_path Path to the file to check.
+	 * @return array
+	 */
+	public static function get_quadrant_crop_suggestions( $file_path ) {
+		if ( ! is_readable( $file_path ) ) {
+			return array();
+		}
+		$size = getimagesize( $file_path );
+		if ( ! $size ) {
+			return array();
+		}
+		$width  = $size[0];
+		$height = $size[1];
+
+		$enrichment_data = GCV::get_file_enrichment_data( $file_path, array( 'CROP_HINTS' ) );
+		if ( is_wp_error( $enrichment_data ) ) {
+			return array();
+		}
+		$bounding_vertices = false;
+		if ( ! empty( $enrichment_data['responses'] ) ) {
+			foreach ( $enrichment_data['responses'] as $response ) {
+				if ( ! empty( $response['cropHintsAnnotation'] ) ) {
+					$bounding_vertices = $response['cropHintsAnnotation']['cropHints'][0]['boundingPoly']['vertices'];
+					break;
+				}
+			}
+		}
+		if ( ! $bounding_vertices ) {
+			return array();
+		}
+		return Utils::transform_bounding_vertices_into_crop_hints( $bounding_vertices, $width, $height );
+	}
+
+	/**
 	 * Get the alt text for an attachment.
 	 *
 	 * @param integer $attachment_id ID for the attachment.

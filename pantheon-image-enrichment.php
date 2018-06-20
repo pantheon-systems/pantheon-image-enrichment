@@ -45,6 +45,12 @@ add_filter(
 		'filter_wp_handle_upload_prefilter',
 	)
 );
+add_filter(
+	'intermediate_image_sizes_advanced', array(
+		'Pantheon_Image_Enrichment\Hooks',
+		'filter_intermediate_image_sizes_advanced',
+	), 10, 2
+);
 
 /**
  * Registers the class autoloader.
