@@ -13,13 +13,11 @@ Generate default alt text, block unsafe uploads, and enrich images using the Goo
 
 [![Travis CI](https://travis-ci.org/pantheon-systems/pantheon-image-enrichment.svg?branch=master)](https://travis-ci.org/pantheon-systems/pantheon-image-enrichment)
 
-Supercharge your WordPress Media Library with a variety of enhancements via the Google Cloud Vision API.
+Supercharge your WordPress Media Library with a variety of enhancements via the Google Cloud Vision API:
 
-Generates default alt text for new and existing images. Uses the landmark or logo if one is detected in the image, otherwise generates a comma-separated list of descriptive labels.
-
-Blocks uploading of images deemed unfit for Google Safe Search. Default behavior is to reject any images deemed likely or very likely to be adult, spoof, medical, violence, or racy.
-
-Incorporates quadrant focuses into the image crop process. Defines `array( 'top', 'left' )`, etc. for any image sizes with `'crop' => true` based on the identified point of focus in the image.
+* **Generates default alt text for uploaded images without it.** Uses the landmark or logo if one is detected in the image, otherwise generates a comma-separated list of descriptive labels.
+* **Blocks uploading of images deemed unfit for Google Safe Search.** Default behavior is to reject any images deemed likely or very likely to be adult, spoof, medical, violence, or racy.
+* **Incorporates quadrant crop hints into the image crop process.** Based on the machine-identified point of focus, defines `array( 'left', 'top' )`, etc. for any image sizes with `'crop' => true`.
 
 Go forth and make awesome! And, once you've built something great, [send us feature requests (or bug reports)](https://github.com/pantheon-systems/pantheon-image-enrichment/issues).
 
@@ -53,6 +51,26 @@ This plugin implements a variety of [WP-CLI](https://wp-cli.org) commands. All c
     SUBCOMMANDS
     
       generate-alt-text      Generate alt text for attachments.
+
+== Implementation Details ==
+
+If you're curious about how Pantheon Image Enrichment works, let's take a high-level walkthrough.
+
+The `Hooks` class defines all of the integration points with WordPress:
+
+* `filter_wp_handle_upload_prefilter` - At the very beginning of the upload process, prefetches all Google Cloud Vision data we might want to use. Based on this fetched data, also rejects upload of unsafe images.
+* `action_add_attachment` - Generates alt text if none exists when attachment object is saved to the WordPress database.
+* `filter_intermediate_image_sizes_advanced` - Introduces quadrant-based crop hints (e.g. `array( 'left', 'center' )`) when generating cropped versions of the attachment.
+
+Under the hood, the `Hooks` class calls the `Enrich` class for specific enrichment behaviors:
+
+* `generate_alt_text_if_none_exists` - Generate alt text for an attachment if none exists.
+* `generate_alt_text_if_missing_or_previously_enriched` - Generate alt text for an attachment if none exists or it was previously enriched.
+* `generate_alt_text_always` - Always generate alt text, even if some exists already.
+* `get_likely_safe_search_violations` - Get any `LIKELY` or `VERY_LIKELY` Google Safe Search violations.
+* `get_quadrant_crop_suggestions` - Get quadrant-based crop suggestions for a given image.
+
+Lastly, the `GCV` is the workhorse class that provides an interface to the Google Cloud Vision API.
 
 == Changelog ==
 
