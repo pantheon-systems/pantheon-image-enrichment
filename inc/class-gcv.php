@@ -139,10 +139,10 @@ class GCV {
 		}
 
 		$request_body = array(
-			'image'        => array(
+			'image'    => array(
 				'content' => base64_encode( file_get_contents( $file_path ) ),
 			),
-			'features'     => array(),
+			'features' => array(),
 		);
 		foreach ( $features as $feature ) {
 			switch ( $feature ) {
