@@ -19,6 +19,8 @@ Generates default alt text for new and existing images. Uses the landmark or log
 
 Blocks uploading of images deemed unfit for Google Safe Search. Default behavior is to reject any images deemed likely or very likely to be adult, spoof, medical, violence, or racy.
 
+Incorporates quadrant focuses into the image crop process. Defines 'top,left', etc. based on the identified point of focus in the image.
+
 Go forth and make awesome! And, once you've built something great, [send us feature requests (or bug reports)](https://github.com/pantheon-systems/pantheon-image-enrichment/issues).
 
 == Installation ==

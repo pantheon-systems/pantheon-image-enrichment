@@ -137,13 +137,26 @@ class GCV {
 		}
 
 		$request_body = array(
-			'image'    => array(
+			'image'        => array(
 				'content' => base64_encode( file_get_contents( $file_path ) ),
 			),
-			'features' => array(),
+			'features'     => array(),
+			'imageContext' => array(),
 		);
 		foreach ( $features as $feature ) {
 			switch ( $feature ) {
+				case 'CROP_HINTS':
+					$request_body['features'][]                      = array(
+						'type' => 'CROP_HINTS',
+					);
+					$request_body['imageContext']['cropHintsParams'] = array(
+						'aspectRatios' => array(
+							// Square aspect ratio gives us roughly
+							// the focal point.
+							1,
+						),
+					);
+					break;
 				case 'LABEL_DETECTION':
 					$request_body['features'][] = array(
 						'type'       => 'LABEL_DETECTION',

@@ -60,4 +60,43 @@ class Hooks {
 		}
 		return $file;
 	}
+
+	/**
+	 * Incorporate crop hints into the image cropping process.
+	 *
+	 * Any image size where 'crop=>true' can be transformed to quadrant-based crop positions.
+	 *
+	 * @param array $sizes    An associative array of image sizes.
+	 * @param array $metadata An associative array of image metadata: width, height, file.
+	 * @return array
+	 */
+	public static function filter_intermediate_image_sizes_advanced( $sizes, $metadata ) {
+		if ( empty( $sizes ) ) {
+			return $sizes;
+		}
+		$sizes_to_hint = array();
+		foreach ( $sizes as $size => $size_data ) {
+			// 'crop' can be an array of values, false, or true.
+			// We only want to suggest crop positions when crop=>true.
+			if ( ! is_array( $size_data['crop'] ) && $size_data['crop'] ) {
+				$sizes_to_hint[] = $size;
+			}
+		}
+		if ( empty( $sizes_to_hint ) ) {
+			return $sizes_to_hint;
+		}
+
+		$file    = $metadata['file'];
+		$uploads = wp_get_upload_dir();
+		if ( $file && 0 !== strpos( $file, '/' ) && ! preg_match( '|^.:\\\|', $file ) && ( $uploads && false === $uploads['error'] ) ) {
+			$file = $uploads['basedir'] . "/$file";
+		}
+		$crop_hint = Enrich::get_quadrant_crop_suggestions( $file );
+		if ( ! empty( $crop_hint ) ) {
+			foreach ( $sizes_to_hint as $size_to_hint ) {
+				$sizes[ $size_to_hint ]['crop'] = $crop_hint;
+			}
+		}
+		return $sizes;
+	}
 }
