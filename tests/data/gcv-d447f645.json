@@ -1,0 +1,32 @@
+{
+    "responses": [
+        {
+            "cropHintsAnnotation": {
+                "cropHints": [
+                    {
+                        "boundingPoly": {
+                            "vertices": [
+                                {
+                                    "x": 148
+                                },
+                                {
+                                    "x": 493
+                                },
+                                {
+                                    "x": 493,
+                                    "y": 333
+                                },
+                                {
+                                    "x": 148,
+                                    "y": 333
+                                }
+                            ]
+                        },
+                        "confidence": 0.79999995,
+                        "importanceFraction": 0.74
+                    }
+                ]
+            }
+        }
+    ]
+}

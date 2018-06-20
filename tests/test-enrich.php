@@ -119,7 +119,7 @@ class EnrichTest extends Pantheon_Image_Enrichment_Testcase {
 		// No cache for the default features, so errored.
 		$enrichment_data = GCV::get_file_enrichment_data( $file );
 		$this->assertWPError( $enrichment_data );
-		// Successfully prefetches based on cache for all features.
+		// // Successfully prefetches based on cache for all features.
 		$this->assertTrue( GCV::prefetch_file_enrichment_data( $file ) );
 		// Now it's in cache.
 		$cache_value = wp_cache_get( $cache_key, GCV::PREFETCH_CACHE_GROUP );

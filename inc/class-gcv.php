@@ -34,6 +34,7 @@ class GCV {
 	 * @var array
 	 */
 	const PREFETCH_FEATURES = array(
+		'CROP_HINTS',
 		'LABEL_DETECTION',
 		'LANDMARK_DETECTION',
 		'LOGO_DETECTION',
@@ -46,6 +47,7 @@ class GCV {
 	 * @var array
 	 */
 	const PREFETCH_RESPONSE_KEYS = array(
+		'CROP_HINTS'            => 'cropHintsAnnotation',
 		'LABEL_DETECTION'       => 'labelAnnotations',
 		'LANDMARK_DETECTION'    => 'landmarkAnnotations',
 		'LOGO_DETECTION'        => 'logoAnnotations',
@@ -141,7 +143,6 @@ class GCV {
 				'content' => base64_encode( file_get_contents( $file_path ) ),
 			),
 			'features'     => array(),
-			'imageContext' => array(),
 		);
 		foreach ( $features as $feature ) {
 			switch ( $feature ) {
