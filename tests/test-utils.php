@@ -122,6 +122,27 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 				), 1200, 1600
 			)
 		);
+		$this->assertEquals(
+			array(
+				'center',
+				'center',
+			), Utils::transform_bounding_vertices_into_crop_hints(
+				array(
+					array(),
+					array(
+						'x' => 1200,
+						'y' => 205,
+					),
+					array(
+						'x' => 1200,
+						'y' => 1405,
+					),
+					array(
+						'y' => 1405,
+					),
+				), 1200, 1600
+			)
+		);
 	}
 
 }
