@@ -7,7 +7,7 @@
  * Author URI:      https://pantheon.io
  * Text Domain:     pantheon-image-enrichment
  * Domain Path:     /languages
- * Version:         0.1.0-alpha
+ * Version:         0.1.0
  *
  * @package         Pantheon_Image_Enrichment
  */

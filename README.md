@@ -3,7 +3,7 @@
 **Tags:** pantheon, images  
 **Requires at least:** 4.7  
 **Tested up to:** 4.9  
-**Stable tag:** 0.0.0  
+**Stable tag:** 0.1.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -74,5 +74,5 @@ Lastly, the `GCV` class is the workhorse that provides an interface to the Googl
 
 ## Changelog ##
 
-### 0.1.0 (???? ??, 2018) ###
+### 0.1.0 (June 25th, 2018) ###
 * Initial release.
