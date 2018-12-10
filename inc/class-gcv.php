@@ -183,7 +183,8 @@ class GCV {
 		}
 
 		$request_signature = hash(
-			'sha256', serialize(
+			'sha256',
+			serialize(
 				array(
 					// Strip the digits off the filename.
 					// The test suite can increment filenames indefinitely;
