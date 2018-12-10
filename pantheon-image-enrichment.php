@@ -16,40 +16,50 @@
  * All of the integration points between the plugin and WordPress.
  */
 add_action(
-	'add_attachment', array(
+	'add_attachment',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'action_add_attachment',
 	)
 );
 add_action(
-	'updated_post_meta', array(
+	'updated_post_meta',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'action_updated_post_meta_remove_key',
-	), 10, 3
+	),
+	10,
+	3
 );
 add_filter(
-	'wp_handle_upload_prefilter', array(
+	'wp_handle_upload_prefilter',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'filter_wp_handle_upload_prefilter',
 	)
 );
 add_filter(
-	'wp_handle_sideload_prefilter', array(
+	'wp_handle_sideload_prefilter',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'filter_wp_handle_upload_prefilter',
 	)
 );
 add_filter(
-	'wp_handle_mock_upload_prefilter', array(
+	'wp_handle_mock_upload_prefilter',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'filter_wp_handle_upload_prefilter',
 	)
 );
 add_filter(
-	'intermediate_image_sizes_advanced', array(
+	'intermediate_image_sizes_advanced',
+	array(
 		'Pantheon_Image_Enrichment\Hooks',
 		'filter_intermediate_image_sizes_advanced',
-	), 10, 2
+	),
+	10,
+	2
 );
 
 /**

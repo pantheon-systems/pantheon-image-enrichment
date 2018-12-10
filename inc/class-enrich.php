@@ -65,7 +65,8 @@ class Enrich {
 			return false;
 		}
 		$enrichment_data = GCV::get_attachment_enrichment_data(
-			$attachment_id, array(
+			$attachment_id,
+			array(
 				'LANDMARK_DETECTION',
 				'LOGO_DETECTION',
 				'LABEL_DETECTION',
