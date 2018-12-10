@@ -20,7 +20,8 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 			array(
 				'left',
 				'center',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(),
 					array(
@@ -33,14 +34,17 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1200,
 					),
-				), 1600, 1200
+				),
+				1600,
+				1200
 			)
 		);
 		$this->assertEquals(
 			array(
 				'center',
 				'center',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(
 						'x' => 205,
@@ -55,14 +59,17 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1200,
 					),
-				), 1600, 1200
+				),
+				1600,
+				1200
 			)
 		);
 		$this->assertEquals(
 			array(
 				'right',
 				'center',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(
 						'x' => 400,
@@ -77,14 +84,17 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1200,
 					),
-				), 1600, 1200
+				),
+				1600,
+				1200
 			)
 		);
 		$this->assertEquals(
 			array(
 				'center',
 				'center',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(
 						'x' => 250,
@@ -99,14 +109,17 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1200,
 					),
-				), 1600, 1200
+				),
+				1600,
+				1200
 			)
 		);
 		$this->assertEquals(
 			array(
 				'center',
 				'top',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(),
 					array(
@@ -119,14 +132,17 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1200,
 					),
-				), 1200, 1600
+				),
+				1200,
+				1600
 			)
 		);
 		$this->assertEquals(
 			array(
 				'center',
 				'center',
-			), Utils::transform_bounding_vertices_into_crop_hints(
+			),
+			Utils::transform_bounding_vertices_into_crop_hints(
 				array(
 					array(),
 					array(
@@ -140,7 +156,9 @@ class UtilsTest extends Pantheon_Image_Enrichment_Testcase {
 					array(
 						'y' => 1405,
 					),
-				), 1200, 1600
+				),
+				1200,
+				1600
 			)
 		);
 	}
