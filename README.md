@@ -1,4 +1,6 @@
 # Pantheon Image Enrichment #
+[![Unofficial](https://img.shields.io/badge/Pantheon-Unofficial-yellow?logo=pantheon&color=FFDC28)](https://pantheon.io/docs/oss-support-levels#unofficial)
+
 **Contributors:** getpantheon, danielbachhuber  
 **Tags:** pantheon, images  
 **Requires at least:** 4.7  
